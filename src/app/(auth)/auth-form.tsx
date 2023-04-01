@@ -20,8 +20,7 @@ export function AuthForm({ sign }: Props) {
 
   const isLoading = emailLoading || githubLoading;
 
-  const callbackUrl =
-    sign === "up" ? "/new-user" : searchParams?.get("from") || "/dashboard";
+  const callbackUrl = searchParams?.get("from") || "/dashboard";
 
   return (
     <div className="flex w-full flex-col gap-8">
