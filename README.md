@@ -1,78 +1,23 @@
-# next-template
+# Next 13 App Dir Template with Authentication
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+## Installation
 
-## Features
+First, copy `.env.example` to `.env.local` and fill in the values.
 
-- Radix UI Primitives
-- Tailwind CSS
-- Fonts with `@next/font`
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Automatic import sorting with `@ianvs/prettier-plugin-sort-imports`
+This will involve setting up an application on Github, and configuring an email provider. I use AWS SES, but there are probably easier options out there.
 
-## Tailwind CSS Features
+Then, install dependencies:
 
-- Class merging with `taiwind-merge`
-- Animation with `tailwindcss-animate`
-- Conditional classes with `clsx`
-- Variants with `class-variance-authority`
-- Automatic class sorting with `eslint-plugin-tailwindcss`
-
-## Import Sort
-
-The starter comes with `@ianvs/prettier-plugin-sort-imports` for automatically sort your imports.
-
-### Input
-
-```tsx
-import * as React from "react"
-import Link from "next/link"
-
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
-import "@/styles/globals.css"
-import { twMerge } from "tailwind-merge"
-
-import { NavItem } from "@/types/nav"
-import { cn } from "@/lib/utils"
+```bash
+pnpm install
 ```
 
-### Output
+You now should be ready to go. Just use `pnpm dev` to start the development server.
 
-```tsx
-import * as React from "react"
-// React is always first.
-import Link from "next/link"
-// Followed by next modules.
-import { twMerge } from "tailwind-merge"
+## Deployment
 
-// Followed by third-party modules
-// Space
-import "@/styles/globals.css"
-// styles
-import { NavItem } from "@/types/nav"
-// types
-import { siteConfig } from "@/config/site"
-// config
-import { cn } from "@/lib/utils"
-// lib
-import { buttonVariants } from "@/components/ui/button"
+Use Vercel. Remember to change the `NEXTAUTH_URL` to your production URL.
 
-// components
-```
+## Credit
 
-### Class Merging
-
-The `cn` util handles conditional classes and class merging.
-
-### Input
-
-```ts
-cn("px-2 bg-slate-100 py-2 bg-slate-200")
-// Outputs `p-2 bg-slate-200`
-```
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+Based off of shadcn's `next-template`, with `taxonomy` used heavily for reference for Next 13 / Next Auth integration. It also ended up looking very similar, sorry about that.
