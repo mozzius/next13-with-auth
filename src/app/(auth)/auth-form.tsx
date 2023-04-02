@@ -77,6 +77,7 @@ export function AuthForm({ sign }: Props) {
           width="full"
           icon={Mail}
           disabled={isLoading}
+          loading={emailLoading}
         >
           Sign {sign} with email
         </Button>
@@ -97,6 +98,7 @@ export function AuthForm({ sign }: Props) {
         }}
         icon={Github}
         disabled={isLoading}
+        loading={githubLoading}
       >
         GitHub
       </Button>

@@ -4,20 +4,19 @@ import { Button, type ButtonProps } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 
-interface Props extends ButtonProps {}
+interface Props extends ButtonProps {
+  callbackUrl?: string;
+}
 
-export const SignOutButton = (props: Props) => {
+export const SignOutButton = ({ callbackUrl = "/", ...props }: Props) => {
   const [loading, setLoading] = useState(false);
   return (
     <Button
-      onClick={async () => {
+      onClick={() => {
         setLoading(true);
-        await signOut({
-          callbackUrl: "/",
-        });
-        setLoading(false);
+        signOut({ callbackUrl });
       }}
-      disabled={loading || props.disabled}
+      loading={loading || props.loading}
       {...props}
     />
   );

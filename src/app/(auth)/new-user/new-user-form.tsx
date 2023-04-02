@@ -70,7 +70,7 @@ export const NewUserForm = ({ user }: Props) => {
           required
         />
       </div>
-      <Button width="full" type="submit" disabled={loading}>
+      <Button width="full" type="submit" loading={loading}>
         Create account
       </Button>
     </form>

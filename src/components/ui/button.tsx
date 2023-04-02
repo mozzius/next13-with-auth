@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
-import { type LucideIcon } from "lucide-react";
+import { Loader2, type LucideIcon } from "lucide-react";
 import * as React from "react";
 
 const buttonVariants = cva(
@@ -44,23 +44,39 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   icon?: LucideIcon;
+  loading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, variant, size, width, icon: Icon, children, ...props },
+    {
+      className,
+      variant,
+      size,
+      width,
+      icon: Icon,
+      children,
+      loading,
+      disabled,
+      ...props
+    },
     ref
   ) => {
-    const hasIcon = !!Icon;
+    const hasIcon = !!Icon || loading;
     return (
       <button
         className={cn(
           buttonVariants({ variant, size, className, width, hasIcon })
         )}
         ref={ref}
+        disabled={disabled || loading}
         {...props}
       >
-        {hasIcon && <Icon size={16} />}
+        {loading ? (
+          <Loader2 size={16} className="animate-spin" />
+        ) : (
+          !!Icon && <Icon size={16} />
+        )}
         {children}
       </button>
     );
